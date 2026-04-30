@@ -8,10 +8,10 @@
 		<version>4.0.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>uy.bios.proyecto</groupId>
-	<artifactId>consultorio-odontologico</artifactId>
+	<groupId>proyecto</groupId>
+	<artifactId>proyecto</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>consultorio-odontologico</name>
+	<name>proyecto</name>
 	<description/>
 	<url/>
 	<licenses>
@@ -51,6 +51,12 @@
 			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>

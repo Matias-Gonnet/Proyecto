@@ -1,13 +1,13 @@
-package uy.bios.proyecto.consultorio_odontologico;
+package proyecto.proyecto;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ConsultorioOdontologicoApplication {
+public class ProyectoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ConsultorioOdontologicoApplication.class, args);
+		SpringApplication.run(ProyectoApplication.class, args);
 	}
 
 }
