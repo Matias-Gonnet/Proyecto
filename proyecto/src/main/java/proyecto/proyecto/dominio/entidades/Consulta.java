@@ -1,20 +1,15 @@
 package proyecto.proyecto.dominio.entidades;
-
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Consulta {
-    
     private int id;
-    private LocalDate fechaHora;
+    private LocalDateTime fechaHora;
     private String motivo;
-    /*private int cantidad;  esto va dentro de Solicitud*/
-    private boolean estado;
+    private boolean estado; // Vigente / Finalizada
 
     private Solicitud solicitud;
     private Consultorio consultorio;
-    private Paciente paciente;
     private Odontologo odontologo;
-
 
     public int getId() {
         return id;
@@ -22,10 +17,10 @@ public class Consulta {
     public void setId(int id) {
         this.id = id;
     }
-    public LocalDate getFechaHora() {
+    public LocalDateTime getFechaHora() {
         return fechaHora;
     }
-    public void setFechaHora(LocalDate fechaHora) {
+    public void setFechaHora(LocalDateTime fechaHora) {
         this.fechaHora = fechaHora;
     }
     public String getMotivo() {
@@ -52,12 +47,6 @@ public class Consulta {
     public void setConsultorio(Consultorio consultorio) {
         this.consultorio = consultorio;
     }
-    public Paciente getPaciente() {
-        return paciente;
-    }
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
     public Odontologo getOdontologo() {
         return odontologo;
     }
@@ -65,24 +54,4 @@ public class Consulta {
         this.odontologo = odontologo;
     }
 
-
-    public Consulta() {
-        this(0, null, null, false, null, null, null, null);
     }
-    
-    public Consulta(int id, LocalDate fechaHora, String motivo, boolean estado, Solicitud solicitud,
-            Consultorio consultorio, Paciente paciente, Odontologo odontologo) {
-        this.id = id;
-        this.fechaHora = fechaHora;
-        this.motivo = motivo;
-        this.estado = estado;
-        this.solicitud = solicitud;
-        this.consultorio = consultorio;
-        this.paciente = paciente;
-        this.odontologo = odontologo;
-    }
-
-
-
-    
-}

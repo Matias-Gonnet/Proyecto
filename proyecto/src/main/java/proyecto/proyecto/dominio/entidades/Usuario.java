@@ -1,8 +1,6 @@
 package proyecto.proyecto.dominio.entidades;
-
 import java.util.HashSet;
 import java.util.Set;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.Table;

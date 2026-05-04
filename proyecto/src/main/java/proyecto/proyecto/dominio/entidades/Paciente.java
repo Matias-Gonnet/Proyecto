@@ -1,8 +1,5 @@
 package proyecto.proyecto.dominio.entidades;
-
 import java.sql.Date;
-
-
 
 public class Paciente extends Usuario{
 

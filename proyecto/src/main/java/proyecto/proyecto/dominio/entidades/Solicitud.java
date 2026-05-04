@@ -1,8 +1,5 @@
 package proyecto.proyecto.dominio.entidades;
-
 import java.time.LocalDate;
-
-
 
 public class Solicitud {
     
