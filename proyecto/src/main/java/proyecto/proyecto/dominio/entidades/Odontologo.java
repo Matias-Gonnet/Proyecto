@@ -6,10 +6,10 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "odontologos")
 public class Odontologo extends Usuario {
+    
     private String especialidad;
     private boolean disponibilidad;
 
-    // Getters y Setters
     public String getEspecialidad() { return especialidad; }
     public void setEspecialidad(String especialidad) { this.especialidad = especialidad; }
     public boolean isDisponibilidad() { return disponibilidad; }

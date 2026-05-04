@@ -1,13 +1,12 @@
 package proyecto.proyecto.dominio.entidades;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Consulta {
     private int id;
-    private LocalDateTime fechaHora;
+    private LocalDate fechaHora;
     private String motivo;
     private boolean estado; // Vigente / Finalizada
 
-    private Solicitud solicitud;
     private Consultorio consultorio;
     private Odontologo odontologo;
 
@@ -17,10 +16,10 @@ public class Consulta {
     public void setId(int id) {
         this.id = id;
     }
-    public LocalDateTime getFechaHora() {
+    public LocalDate getFechaHora() {
         return fechaHora;
     }
-    public void setFechaHora(LocalDateTime fechaHora) {
+    public void setFechaHora(LocalDate fechaHora) {
         this.fechaHora = fechaHora;
     }
     public String getMotivo() {
@@ -34,12 +33,6 @@ public class Consulta {
     }
     public void setEstado(boolean estado) {
         this.estado = estado;
-    }
-    public Solicitud getSolicitud() {
-        return solicitud;
-    }
-    public void setSolicitud(Solicitud solicitud) {
-        this.solicitud = solicitud;
     }
     public Consultorio getConsultorio() {
         return consultorio;

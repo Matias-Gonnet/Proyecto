@@ -1,12 +1,10 @@
 package proyecto.proyecto.dominio.entidades;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Solicitud {
     
-
     private int id;
-    private int cantidad;
-    private LocalDate fechaSolicitud;
+    private LocalDateTime fechaSolicitud;
     private boolean estado;
 
     private Consulta consulta;
@@ -20,16 +18,10 @@ public class Solicitud {
     public void setId(int id) {
         this.id = id;
     }
-    public int getCantidad() {
-        return cantidad;
-    }
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-    public LocalDate getFechaSolicitud() {
+    public LocalDateTime getFechaSolicitud() {
         return fechaSolicitud;
     }
-    public void setFechaSolicitud(LocalDate fechaSolicitud) {
+    public void setFechaSolicitud(LocalDateTime fechaSolicitud) {
         this.fechaSolicitud = fechaSolicitud;
     }
     public boolean isEstado() {
@@ -57,16 +49,13 @@ public class Solicitud {
         this.administrativo = administrativo;
     }
 
-
     public Solicitud() {
-        this(0, 0, null, false, null, null, null);
+        this(0, null, false, null, null, null);
     }
 
-    
-    public Solicitud(int id, int cantidad, LocalDate fechaSolicitud, boolean estado, Consulta consulta,
+    public Solicitud(int id, LocalDateTime fechaSolicitud, boolean estado, Consulta consulta,
             Paciente paciente, Administrativo administrativo) {
         this.id = id;
-        this.cantidad = cantidad;
         this.fechaSolicitud = fechaSolicitud;
         this.estado = estado;
         this.consulta = consulta;

@@ -1,38 +1,30 @@
 package proyecto.proyecto.dominio.entidades;
+import java.math.BigDecimal;
 
 public class Ubicacion {
     
     private String direccion;
-    private String latitud;
-    private String longitud;
+    private BigDecimal latitud;
+    private BigDecimal longitud;
+    
     public String getDireccion() {
         return direccion;
     }
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    public String getLatitud() {
+    public BigDecimal getLatitud() {
         return latitud;
     }
-    public void setLatitud(String latitud) {
+    public void setLatitud(BigDecimal latitud) {
         this.latitud = latitud;
     }
-    public String getLongitud() {
+    public BigDecimal getLongitud() {
         return longitud;
     }
-    public void setLongitud(String longitud) {
+    public void setLongitud(BigDecimal longitud) {
         this.longitud = longitud;
     }
 
-    
-    public Ubicacion() {
-        this(null, null, null);
-    }
-    public Ubicacion(String direccion, String latitud, String longitud) {
-        this.direccion = direccion;
-        this.latitud = latitud;
-        this.longitud = longitud;
-    }
 
-    
 }

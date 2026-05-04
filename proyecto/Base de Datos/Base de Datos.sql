@@ -16,8 +16,8 @@ CREATE TABLE usuarios (
     apellido VARCHAR(100) NOT NULL,
     telefono VARCHAR(20),
     correo VARCHAR(100) NOT NULL UNIQUE,
-    id_rol INT,
     activo BOOLEAN DEFAULT TRUE,
+    id_rol INT,
     FOREIGN KEY (id_rol) REFERENCES roles(id_rol)
 );
 
@@ -46,8 +46,8 @@ CREATE TABLE odontologos (
 -- Tabla de Ubicaciones (para Jornadas y Consultorios)
 CREATE TABLE ubicaciones (
     id_ubicacion INT AUTO_INCREMENT PRIMARY KEY,
-    latitud DECIMAL,
-    longitud DECIMAL,
+    latitud DECIMAL(10, 8),
+    longitud DECIMAL(11, 8),
     descripcion VARCHAR(255)
 );
 
@@ -128,9 +128,8 @@ CREATE TABLE jornadas (
     id_jornada INT AUTO_INCREMENT PRIMARY KEY,
     fecha_inicio DATETIME,
     fecha_fin DATETIME,
-    id_ubicacion INT,
+    ubicacion VARCHAR(50),
     documento_administrativo VARCHAR(20),
-    FOREIGN KEY (id_ubicacion) REFERENCES ubicaciones(id_ubicacion),
     FOREIGN KEY (documento_administrativo) REFERENCES administrativos(documento)
 );
 

@@ -1,9 +1,9 @@
 package proyecto.proyecto.dominio.entidades;
-/*import jakarta.persistence.Entity;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "roles")*/
+@Table(name = "roles")
 public class Rol {
 
     private String nombreRol;
@@ -24,6 +24,4 @@ public class Rol {
         this.nombreRol = nombreRol;
     }
 
-    
-    
 }
