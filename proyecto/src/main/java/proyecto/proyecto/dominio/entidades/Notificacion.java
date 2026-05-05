@@ -13,7 +13,7 @@ public class Notificacion {
 
     private String tipo;
 
-    @Lob
+    
     private String mensaje;
 
     private LocalDateTime fecha;

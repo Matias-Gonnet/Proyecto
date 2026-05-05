@@ -15,13 +15,10 @@ public class HistoriaClinica {
     @Column(name = "fecha_registero", insertable = false, updatable = false)
     private LocalDateTime fechaRegistro;
 
-    @Lob
     private String diagnostico;
 
-    @Lob
     private String tratamiento;
 
-    @Lob
     private String observaciones;
 
     @UpdateTimestamp

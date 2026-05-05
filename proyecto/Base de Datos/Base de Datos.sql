@@ -134,3 +134,213 @@ CREATE TABLE jornadas (
 );
 
 -- Procedimientos almacenados
+
+DELIMITER //
+
+CREATE PROCEDURE registrar_paciente(
+    IN p_documento VARCHAR(20),
+    IN p_contrasena VARCHAR(255),
+    IN p_nombre VARCHAR(100),
+    IN p_apellido VARCHAR(100),
+    IN p_telefono VARCHAR(20),
+    IN p_correo VARCHAR(100),
+    IN p_fecha_nacimiento DATE,
+    IN p_direccion VARCHAR(255)
+)
+BEGIN
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        return -1;
+    END;
+
+    START TRANSACTION;
+        INSERT INTO usuarios (documento, contrasena, nombre, apellido, telefono, correo, id_rol)
+        VALUES (p_documento, p_contrasena, p_nombre, p_apellido, p_telefono, p_correo, 3);
+
+        INSERT INTO pacientes (documento, fecha_nacimiento, direccion)
+        VALUES (p_documento, p_fecha_nacimiento, p_direccion);
+    COMMIT;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE registrar_administrativo(
+    IN p_documento VARCHAR(20),
+    IN p_contrasena VARCHAR(255),
+    IN p_nombre VARCHAR(100),
+    IN p_apellido VARCHAR(100),
+    IN p_telefono VARCHAR(20),
+    IN p_correo VARCHAR(100)
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        return -1;
+    END;
+
+    START TRANSACTION;
+        INSERT INTO usuarios (documento, contrasena, nombre, apellido, telefono, correo, id_rol)
+        VALUES (p_documento, p_contrasena, p_nombre, p_apellido, p_telefono, p_correo, 1);
+
+        INSERT INTO administrativos (documento)
+        VALUES (p_documento);
+    COMMIT;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE registrar_odontologo(
+    IN p_documento VARCHAR(20),
+    IN p_contrasena VARCHAR(255),
+    IN p_nombre VARCHAR(100),
+    IN p_apellido VARCHAR(100),
+    IN p_telefono VARCHAR(20),
+    IN p_correo VARCHAR(100),
+    IN p_especialidad VARCHAR(100)
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        return -1;
+    END;
+
+    START TRANSACTION;
+        INSERT INTO usuarios (documento, contrasena, nombre, apellido, telefono, correo, id_rol)
+        VALUES (p_documento, p_contrasena, p_nombre, p_apellido, p_telefono, p_correo, 2);
+
+        INSERT INTO odontologos (documento, especialidad, disponibilidad)
+        VALUES (p_documento, p_especialidad, TRUE);
+    COMMIT;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE modificar_paciente(
+    IN p_documento VARCHAR(20),
+    IN p_nombre VARCHAR(100),
+    IN p_apellido VARCHAR(100),
+    IN p_telefono VARCHAR(20),
+    IN p_correo VARCHAR(100),
+    IN p_fecha_nacimiento DATE,
+    IN p_direccion VARCHAR(255)
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        return -1;
+    END;
+
+    START TRANSACTION;
+        UPDATE usuarios 
+        SET nombre = p_nombre, 
+            apellido = p_apellido, 
+            telefono = p_telefono, 
+            correo = p_correo
+        WHERE documento = p_documento;
+
+        UPDATE pacientes 
+        SET fecha_nacimiento = p_fecha_nacimiento, 
+            direccion = p_direccion
+        WHERE documento = p_documento;
+    COMMIT;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE modificar_odontologo(
+    IN p_documento VARCHAR(20),
+    IN p_nombre VARCHAR(100),
+    IN p_apellido VARCHAR(100),
+    IN p_telefono VARCHAR(20),
+    IN p_correo VARCHAR(100),
+    IN p_especialidad VARCHAR(100)
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        return -1;
+    END;
+
+    START TRANSACTION;
+        UPDATE usuarios 
+        SET nombre = p_nombre, 
+            apellido = p_apellido, 
+            telefono = p_telefono, 
+            correo = p_correo
+        WHERE documento = p_documento;
+
+        UPDATE odontologos 
+        SET especialidad = p_especialidad
+        WHERE documento = p_documento;
+    COMMIT;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE modificar_administrativo(
+    IN p_documento VARCHAR(20),
+    IN p_nombre VARCHAR(100),
+    IN p_apellido VARCHAR(100),
+    IN p_telefono VARCHAR(20),
+    IN p_correo VARCHAR(100)
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        return -1;
+    END;
+
+    START TRANSACTION;
+
+        UPDATE usuarios 
+        SET nombre = p_nombre, 
+            apellido = p_apellido, 
+            telefono = p_telefono, 
+            correo = p_correo
+        WHERE documento = p_documento;
+    COMMIT;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE eliminar_usuario_logica(
+    IN p_documento VARCHAR(20)
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        return -1;
+    END;
+
+    IF NOT EXISTS (SELECT 1 FROM usuarios WHERE documento = p_documento) THEN
+        return -2;
+    ELSE
+        START TRANSACTION;
+            UPDATE usuarios 
+            SET activo = FALSE 
+            WHERE documento = p_documento;
+        COMMIT;
+    END IF;
+END //
+
+DELIMITER ;
